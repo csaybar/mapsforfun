@@ -1,7 +1,0 @@
----
-title: 'Maps for fun'
-date: "Updated: `r format(Sys.Date())`"
----
-
-Hi!
-
