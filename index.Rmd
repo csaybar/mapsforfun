@@ -4,15 +4,24 @@ pagetitle: intro
 date: "Updated: `r format(Sys.Date())`"
 ---
 
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE,message = FALSE)
 ```
 
 <br>
 
-### 1. Intro
+```{r, out.width = "500px", fig.align="center",eval = TRUE, echo = FALSE}
+knitr::include_graphics("img/fun.jpg")
+```
 
-Nowadays maps and other kinds of **geospatial visualizations** are in every nook and cranny. It seems everybody loves **geoviz**, but why?. Probably, there may be a lot of good reasons for it, although the most important is that we can read and comprehend them effortlessly. Even when I have shown to my students some weird maps ([**Cartogram**](https://en.wikipedia.org/wiki/Cartogram)). They have continued to explain with success the essence of the map. It makes me think that **all of us** have a kind of exceptional condition **innate** for a spatial-oriented way of thinking. 
+<br>
+
+### 1. Introduction
+Nowadays maps and other kinds of **geospatial visualizations** are in every nook and cranny. It seems everybody loves **geoviz**, but why?.
+Probably, there may be a lot of good reasons for it, but in the simplest ways is we can read and comprehend them effortlessly.
+
+What happends if I show you a weird map? ([**Cartogram**](https://en.wikipedia.org/wiki/Cartogram), see bellow). I am utterly sure you will explain with success the essence of the map, even if you have no idea about what is a cartogram. This leads to idea that **all of us** have a kind of exceptional condition **innate** for a spatial-oriented way of thinking. Therefore, as a data communicator all the techniques of geospatial visualization data must be in your arsenal if you want to give a good impression.
 
 ```{r pop1}
 library(rnaturalearth)
@@ -87,38 +96,35 @@ anim <- animate(p,duration = 4) # Create a gif file
 knitr::include_graphics("img/population2.gif")
 ```
 
-### 2. Course Description
+### 2. The Course
 
-This course is a gentle introduction for learning to make maps with high impact. In my opinion a critical skill in the age of data explosion. There are a lot of multiple tools for starting to produce **geoviz**. In this course will use R and RStudio mainly. There are a lot of good reasons for this:
+**Maps for fun** is a gentle introduction for learning to make maps with high impact using R and RStudio mainly. There are a lot of good reasons for prefer R instead other [languages](https://www.python.org/) or [platforms](https://www.geovista.psu.edu/geoviztoolkit/): 
 
   - The R community.
+  - **ggplot2** + [sf](https://cran.r-project.org/web/packages/sf/index.html) == perfect match <i class="fa fa-heart fa-1x fa-beat"></i>. 
   - Open-source (free) software.
-  - A huge amount of new packages ([**crosstalk**](https://rstudio.github.io/crosstalk/), [**r2d3**](http://www.r2d3.us/), [**furrr**](https://purrr.tidyverse.org/), [**reticulate**](https://github.com/rstudio/reticulate), [**etc.**](https://awesome-r.com/#awesome-r-2018)), all of them count with a cohesive narrative that helps to get in-depth knowledge quickly.
+  - A huge amount of new packages (2018) ([**crosstalk**](https://rstudio.github.io/crosstalk/), [**r2d3**](http://www.r2d3.us/), [**furrr**](https://purrr.tidyverse.org/), [**reticulate**](https://github.com/rstudio/reticulate), [**etc.**](https://awesome-r.com/#awesome-r-2018)), all of them count with a cohesive narrative that helps you to get in-depth knowledge quickly.
   - R is easy lo learn.
-  - R is cross-platform
-  - etc.
-
-No prior programming knowledge is required and all
-
-### 3. Objectives
-
-  - Insert **tidyverse** in your daily data science workflow.
-  - Learn about the available R spatial objects.
-  - Plot static and dynamics geospatial visualizations.
-  - Learn about reproducible research.
-  
-### 4. Contained
-
-  - Choropleth maps in plotly.
-  - Creating Cartograms in R.
-  - Geospatial animations with plotly.
-  - Geospatial animations with gganimate.
-  - Web maps with Leaflet.
-  - Widget interactions with Crosstalk.
-  - Interactive Mapping with Shiny.
-  - Tips for 3D Surface Representations.
-  - Flexdashboards for Spatial data communication.
-       
-### 5. Acknowledgment
+  - R is cross-platform.
+  - etc. 
 
 
+
+Although no prior programming knowledge is required, it is recommended. All the **geoviz** presented in this course are reproducible so you only need to install the libraries specified on the [**setup**]() section. By the end of this course participants will have a good understading about the principle geospatial vizualization techniques, manipulate tables for get a static and dynamic map, create annimations, etc.
+
+### 3. Contained
+
+
+  - [**Choropleth maps in plotly**]().
+  - [**Creating Heat maps**]().
+  - [**dot and lines on maps**]().
+  - [**Creating Hexagonal binning**]().
+  - [**Cluster maps**]()
+  - [**Creating Cartograms**]().
+  - [**Geospatial animations with plotly**]().
+  - [**Geospatial animations with gganimate**]().
+  - [**Web maps with Leaflet**]().
+  - [**Widget interactions with Crosstalk**]().
+  - [**Interactive Mapping with Shiny**]().
+  - [**Tips for 3D Surface Representations**]().
+  - [**Flexdashboards for Spatial data communication**]().

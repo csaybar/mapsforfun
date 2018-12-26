@@ -560,15 +560,18 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Maps for <b><span style="color:red">F</span><span style="color:purple">u</span><span style="color:yellow">N</span></b></h1>
-<h4 class="date"><em>Updated: 2018-12-25</em></h4>
+<h4 class="date"><em>Updated: 2018-12-26</em></h4>
 
 </div>
 
 
 <p><br></p>
-<div id="intro" class="section level3">
-<h3>1. Intro</h3>
-<p>Nowadays maps and other kinds of <strong>geospatial visualizations</strong> are in every nook and cranny. It seems everybody loves <strong>geoviz</strong>, but why?. Probably, there may be a lot of good reasons for it, although the most important is that we can read and comprehend them effortlessly. Even when I have shown to my students some weird maps (<a href="https://en.wikipedia.org/wiki/Cartogram"><strong>Cartogram</strong></a>). They have continued to explain with success the essence of the map. It makes me think that <strong>all of us</strong> have a kind of exceptional condition <strong>innate</strong> for a spatial-oriented way of thinking.</p>
+<p><img src="img/fun.jpg" width="500px" style="display: block; margin: auto;" /></p>
+<p><br></p>
+<div id="introduction" class="section level3">
+<h3>1. Introduction</h3>
+<p>Nowadays maps and other kinds of <strong>geospatial visualizations</strong> are in every nook and cranny. It seems everybody loves <strong>geoviz</strong>, but why?. Probably, there may be a lot of good reasons for it, but in the simplest ways is we can read and comprehend them effortlessly.</p>
+<p>What happends if I show you a weird map? (<a href="https://en.wikipedia.org/wiki/Cartogram"><strong>Cartogram</strong></a>, see bellow). I am utterly sure you will explain with success the essence of the map, even if you have no idea about what is a cartogram. This leads to idea that <strong>all of us</strong> have a kind of exceptional condition <strong>innate</strong> for a spatial-oriented way of thinking. Therefore, as a data communicator all the techniques of geospatial visualization data must be in your arsenal if you want to give a good impression.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rnaturalearth)
 <span class="kw">library</span>(hrbrthemes)
 <span class="kw">library</span>(tidyverse)
@@ -636,44 +639,37 @@ anim &lt;-<span class="st"> </span><span class="kw">animate</span>(p,<span class
 <span class="co"># anim_save(&#39;population.gif&#39;,anim)  #save your gif</span></code></pre></div>
 <p><img src="img/population2.gif" width="500px" style="display: block; margin: auto;" /></p>
 </div>
-<div id="course-description" class="section level3">
-<h3>2. Course Description</h3>
-<p>This course is a gentle introduction for learning to make maps with high impact. In my opinion a critical skill in the age of data explosion. There are a lot of multiple tools for starting to produce <strong>geoviz</strong>. In this course will use R and RStudio mainly. There are a lot of good reasons for this:</p>
+<div id="the-course" class="section level3">
+<h3>2. The Course</h3>
+<p><strong>Maps for fun</strong> is a gentle introduction for learning to make maps with high impact using R and RStudio mainly. There are a lot of good reasons for prefer R instead other <a href="https://www.python.org/">languages</a> or <a href="https://www.geovista.psu.edu/geoviztoolkit/">platforms</a>:</p>
 <ul>
 <li>The R community.</li>
+<li><strong>ggplot2</strong> + <a href="https://cran.r-project.org/web/packages/sf/index.html">sf</a> == perfect match <i class="fa fa-heart fa-1x fa-beat"></i>.</li>
 <li>Open-source (free) software.</li>
-<li>A huge amount of new packages (<a href="https://rstudio.github.io/crosstalk/"><strong>crosstalk</strong></a>, <a href="http://www.r2d3.us/"><strong>r2d3</strong></a>, <a href="https://purrr.tidyverse.org/"><strong>furrr</strong></a>, <a href="https://github.com/rstudio/reticulate"><strong>reticulate</strong></a>, <a href="https://awesome-r.com/#awesome-r-2018"><strong>etc.</strong></a>), all of them count with a cohesive narrative that helps to get in-depth knowledge quickly.</li>
+<li>A huge amount of new packages (2018) (<a href="https://rstudio.github.io/crosstalk/"><strong>crosstalk</strong></a>, <a href="http://www.r2d3.us/"><strong>r2d3</strong></a>, <a href="https://purrr.tidyverse.org/"><strong>furrr</strong></a>, <a href="https://github.com/rstudio/reticulate"><strong>reticulate</strong></a>, <a href="https://awesome-r.com/#awesome-r-2018"><strong>etc.</strong></a>), all of them count with a cohesive narrative that helps you to get in-depth knowledge quickly.</li>
 <li>R is easy lo learn.</li>
-<li>R is cross-platform</li>
+<li>R is cross-platform.</li>
 <li>etc.</li>
 </ul>
-<p>No prior programming knowledge is required and all</p>
-</div>
-<div id="objectives" class="section level3">
-<h3>3. Objectives</h3>
-<ul>
-<li>Insert <strong>tidyverse</strong> in your daily data science workflow.</li>
-<li>Learn about the available R spatial objects.</li>
-<li>Plot static and dynamics geospatial visualizations.</li>
-<li>Learn about reproducible research.</li>
-</ul>
+<p>Although no prior programming knowledge is required, it is recommended. All the <strong>geoviz</strong> presented in this course are reproducible so you only need to install the libraries specified on the <a href=""><strong>setup</strong></a> section. By the end of this course participants will have a good understading about the principle geospatial vizualization techniques, manipulate tables for get a static and dynamic map, create annimations, etc.</p>
 </div>
 <div id="contained" class="section level3">
-<h3>4. Contained</h3>
+<h3>3. Contained</h3>
 <ul>
-<li>Choropleth maps in plotly.</li>
-<li>Creating Cartograms in R.</li>
-<li>Geospatial animations with plotly.</li>
-<li>Geospatial animations with gganimate.</li>
-<li>Web maps with Leaflet.</li>
-<li>Widget interactions with Crosstalk.</li>
-<li>Interactive Mapping with Shiny.</li>
-<li>Tips for 3D Surface Representations.</li>
-<li>Flexdashboards for Spatial data communication.</li>
+<li><a href=""><strong>Choropleth maps in plotly</strong></a>.</li>
+<li><a href=""><strong>Creating Heat maps</strong></a>.</li>
+<li><a href=""><strong>dot and lines on maps</strong></a>.</li>
+<li><a href=""><strong>Creating Hexagonal binning</strong></a>.</li>
+<li><a href=""><strong>Cluster maps</strong></a></li>
+<li><a href=""><strong>Creating Cartograms</strong></a>.</li>
+<li><a href=""><strong>Geospatial animations with plotly</strong></a>.</li>
+<li><a href=""><strong>Geospatial animations with gganimate</strong></a>.</li>
+<li><a href=""><strong>Web maps with Leaflet</strong></a>.</li>
+<li><a href=""><strong>Widget interactions with Crosstalk</strong></a>.</li>
+<li><a href=""><strong>Interactive Mapping with Shiny</strong></a>.</li>
+<li><a href=""><strong>Tips for 3D Surface Representations</strong></a>.</li>
+<li><a href=""><strong>Flexdashboards for Spatial data communication</strong></a>.</li>
 </ul>
-</div>
-<div id="acknowledgment" class="section level3">
-<h3>5. Acknowledgment</h3>
 </div>
 
 
