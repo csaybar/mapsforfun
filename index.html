@@ -569,8 +569,72 @@ div.tocify {
 <div id="intro" class="section level3">
 <h3>1. Intro</h3>
 <p>Nowadays maps and other kinds of <strong>geospatial visualizations</strong> are in every nook and cranny. It seems everybody loves <strong>geoviz</strong>, but why?. Probably, there may be a lot of good reasons for it, although the most important is that we can read and comprehend them effortlessly. Even when I have shown to my students some weird maps (<a href="https://en.wikipedia.org/wiki/Cartogram"><strong>Cartogram</strong></a>). They have continued to explain with success the essence of the map. It makes me think that <strong>all of us</strong> have a kind of exceptional condition <strong>innate</strong> for a spatial-oriented way of thinking.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;img/fun.jpg&quot;</span>)</code></pre></div>
-<p><img src="img/fun.jpg" width="400px" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rnaturalearth)
+<span class="kw">library</span>(hrbrthemes)
+<span class="kw">library</span>(tidyverse)
+<span class="kw">library</span>(gganimate)
+<span class="kw">library</span>(cartogram)
+<span class="kw">library</span>(sf)
+
+<span class="co"># Get a sf object of worldwide from Natural Earth Data</span>
+worldmap &lt;-<span class="st"> </span><span class="kw">ne_download</span>(<span class="dt">scale =</span> <span class="dv">110</span>,
+                        <span class="dt">type =</span> <span class="st">&quot;countries&quot;</span>,
+                        <span class="dt">category =</span> <span class="st">&quot;cultural&quot;</span>,
+                        <span class="dt">destdir =</span> <span class="kw">tempdir</span>(),
+                        <span class="dt">load =</span> <span class="ot">TRUE</span>,
+                        <span class="dt">returnclass =</span> <span class="st">&quot;sf&quot;</span>)
+
+<span class="co"># Filter by CONTINENT column to get South-America</span>
+<span class="co"># geometry</span>
+
+worldmap_pop &lt;-<span class="st"> </span>worldmap <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(CONTINENT <span class="op">==</span><span class="st">&#39;South America&#39;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(<span class="st">&#39;POP_EST&#39;</span>) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># country population </span>
+<span class="st">  &#39;colnames&lt;-&#39;</span>(<span class="kw">c</span>(<span class="st">&#39;pop&#39;</span>,<span class="st">&#39;geometry&#39;</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">pop =</span> <span class="kw">as.numeric</span>(pop)<span class="op">/</span><span class="dv">1000000</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">as</span>(<span class="st">&#39;Spatial&#39;</span>) <span class="co"># sf to sp</span>
+
+<span class="co"># Create cartogram of country population.</span>
+cart_worldmap_pop &lt;-<span class="st"> </span><span class="kw">cartogram_cont</span>(worldmap_pop,<span class="st">&#39;pop&#39;</span>)
+worldmap_pop<span class="op">$</span>group =<span class="st"> </span><span class="dv">0</span> <span class="co"># geometries of the simple map</span>
+cart_worldmap_pop<span class="op">$</span>group =<span class="st"> </span><span class="dv">1</span> <span class="co"># geometries of the cartogram.</span>
+
+<span class="co"># Bind both in a single sf object</span>
+anim_world &lt;-<span class="st"> </span><span class="kw">rbind</span>(worldmap_pop,
+               cart_worldmap_pop) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">              </span><span class="kw">st_as_sf</span>()
+
+<span class="co"># Build 100 maps (frames) using cubic spline and </span>
+<span class="co"># compile them in a unique file (*.gif). </span>
+p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">st_as_sf</span>(anim_world)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_sf</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> pop), <span class="dt">alpha=</span><span class="dv">1</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">coord_sf</span>(<span class="dt">crs =</span> <span class="kw">st_crs</span>(anim_world), <span class="dt">datum =</span> <span class="ot">NA</span>) <span class="op">+</span><span class="st"> </span><span class="co">#elimina x and y axis text.</span>
+<span class="st">  </span><span class="kw">scale_fill_viridis_c</span>( <span class="co"># Compose a palette using </span>
+    <span class="dt">trans=</span><span class="st">&#39;sqrt&#39;</span>,
+    <span class="dt">name=</span><span class="st">&quot;Population (M)&quot;</span>,
+    <span class="dt">breaks=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">50</span>,<span class="dv">100</span>, <span class="dv">200</span>),
+    <span class="dt">guide =</span> <span class="kw">guide_legend</span>( <span class="dt">keyheight =</span> <span class="kw">unit</span>(<span class="dv">3</span>, <span class="dt">units =</span> <span class="st">&quot;mm&quot;</span>),
+                          <span class="dt">keywidth=</span><span class="kw">unit</span>(<span class="dv">8</span>, <span class="dt">units =</span> <span class="st">&quot;mm&quot;</span>), 
+                          <span class="dt">label.position =</span> <span class="st">&quot;bottom&quot;</span>, 
+                          <span class="dt">title.position =</span> <span class="st">&#39;top&#39;</span>,
+                          <span class="dt">nrow=</span><span class="dv">1</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;South America Population&quot;</span>,
+       <span class="dt">subtitle =</span> <span class="st">&#39;Natural Earth Data&#39;</span>,
+       <span class="dt">x=</span><span class="ot">NULL</span>, 
+       <span class="dt">y=</span><span class="ot">NULL</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_modern_rc</span>(<span class="dt">plot_title_size =</span> <span class="dv">20</span>,
+                  <span class="dt">axis =</span> <span class="ot">FALSE</span>,
+                  <span class="dt">base_size =</span> <span class="dv">16</span>) <span class="op">+</span><span class="st"> </span><span class="co"># my favorite theme!</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="kw">c</span>(<span class="fl">0.8</span>, <span class="fl">0.04</span>), 
+        <span class="dt">axis.text =</span> <span class="kw">element_blank</span>(), 
+        <span class="dt">panel.grid.minor =</span> <span class="kw">element_blank</span>(),
+        <span class="dt">panel.grid.major =</span> <span class="kw">element_blank</span>()) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">transition_states</span>(group,<span class="dv">2</span>,<span class="dv">1</span>) <span class="op">+</span><span class="st"> </span><span class="co"># gganimate is just magical!</span>
+<span class="st">  </span><span class="kw">ease_aes</span>(<span class="st">&#39;cubic-in-out&#39;</span>)
+
+anim &lt;-<span class="st"> </span><span class="kw">animate</span>(p,<span class="dt">duration =</span> <span class="dv">4</span>) <span class="co"># Create a gif file</span>
+<span class="co"># anim_save(&#39;population.gif&#39;,anim)  #save your gif</span></code></pre></div>
+<p><img src="img/population2.gif" width="500px" style="display: block; margin: auto;" /></p>
 </div>
 <div id="course-description" class="section level3">
 <h3>2. Course Description</h3>
