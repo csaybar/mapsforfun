@@ -13,21 +13,27 @@ navbar:
     menu:
     - text: 1. Choropleth maps.
       href: Rmd/course/choropleth.html
-    - text: 2. Creating Cartograms.
+    - text: 2. Heat maps.
       href: Rmd/course/cartograms.html
-    - text: 3. Geospatial animations with plotly.
+    - text: 3. Dot and lines maps.
+      href: Rmd/course/cartograms.html
+    - text: 4. Hexagonal binnings.
+      href: Rmd/course/cartograms.html
+    - text: 5. Creating Cartograms.
+      href: Rmd/course/cartograms.html
+    - text: 6. Geospatial animations with plotly.
       href: Rmd/course/plotly.html
-    - text: 4. Geospatial animations with gganimate.
+    - text: 7. Geospatial animations with gganimate.
       href: Rmd/course/gganimate.html
-    - text: 5. Web maps with Leaflet.
+    - text: 8. Web maps with Leaflet.
       href: Rmd/course/leaflet.html
-    - text: 6. Widget interactions with Crosstalk.
+    - text: 9. Widget interactions with Crosstalk.
       href: Rmd/course/crosstalk.html
-    - text: 7. Interactive Mapping with Shiny.
+    - text: 10. Interactive Mapping with Shiny.
       href: Rmd/course/shiny.html
-    - text: 8. Tips for 3D Surface Representations.
+    - text: 11. Tips for 3D Surface Representations.
       href: Rmd/course/3dsurface.html
-    - text: 9. Flexdashboards for Spatial data communication.
+    - text: 12. Flexdashboards for Spatial data communication.
       href: Rmd/course/flexdashboards.html
   - text: More geoviz!
     icon: far fa-image fas-1x

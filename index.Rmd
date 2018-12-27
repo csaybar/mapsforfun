@@ -113,8 +113,6 @@ knitr::include_graphics("img/population2.gif")
 Although no prior programming knowledge is required, it is recommended. All the **geoviz** presented in this course are reproducible so you only need to install the libraries specified on the [**setup**]() section. By the end of this course participants will have a good understading about the principle geospatial vizualization techniques, manipulate tables for get a static and dynamic map, create annimations, etc.
 
 ### 3. Contained
-
-
   - [**Choropleth maps in plotly**]().
   - [**Creating Heat maps**]().
   - [**dot and lines on maps**]().
